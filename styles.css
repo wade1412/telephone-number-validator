@@ -4,6 +4,120 @@
   margin: 0;
 }
 
+:root {
+  --background-color: #1c1f26;
+  --text-color: #e4e9f0;
+
+  --accent-color: #3a7bd5;
+  --accent-hover: #c8d7ea;
+
+  --button-bg: #3a7bd5;
+  --button-hover-bg: #326bb8;
+  --button-text: #ffffff;
+
+  --muted-text: #9ba3b5;
+  --border-color: #2b2f38;
+}
+
 html {
   font-size: clamp(12px, 2vh, 18px);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 3rem;
+  display: block;
+  padding: 3.5rem;
+  width: max(500px, 70%);
+  text-align: center;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: min(300px, 80%);
+  height: 30rem;
+  margin: 0 auto;
+  padding: 1rem 1rem 2rem 1rem;
+  background-color: black;
+  border-radius: 1rem;
+}
+
+.speaker {
+  position: relative;
+  background-color: var(--muted-text);
+  top: 0;
+  height: min(1rem, 15px);
+  width: min(20%, 60px);
+  border-radius: 0.4rem;
+  margin: 0 auto 0.6rem auto;
+}
+
+.input-div {
+  display: flex;
+  background-color: var(--text-color);
+  font-size: 1.1rem;
+  color: var(--background-color);
+  flex-direction: column;
+  height: 90%;
+  margin-bottom: 1rem;
+  border-radius: 0.15rem;
+}
+
+.input-label {
+  text-align: center;
+  margin: 1rem;
+  font-weight: 500;
+}
+
+.input-div input {
+  margin: 0 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  appearance: none;
+  border: none;
+  color: var(--accent-color);
+  font-size: 1rem;
+  text-align: center;
+}
+
+.input-div input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 2px solid var(--accent-color);
+  box-shadow: 0px -2px 1rem var(--accent-color);
+}
+
+.button-div {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.button {
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  width: min(100px, 30%);
+  cursor: pointer;
+  border-radius: 0.3rem;
+  background-color: var(--button-bg);
+  border: 1px solid var(--accent-color);
+  color: var(--text-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: var(--button-hover-bg);
+  color: var(--button-text);
+  border: 1px solid var(--accent-hover);
+  transform: translateY(-2px);
 }
