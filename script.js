@@ -3,38 +3,38 @@ const checkBtn = document.getElementById("check-btn");
 const clearBtn = document.getElementById("clear-btn");
 const result = document.getElementById("results-div");
 
+const getDigits = (raw) => raw.replace(/\D/g, "");
+
 const isInputEmpty = (str) => {
   return str.trim() === "";
 };
 
-const isPhoneNumberLengthValid = (arr) => {
-  if (arr[0] === 1 || arr.length === 11) {
-    return true;
-  } else if (arr.length === 10) {
-    return true;
-  } else return false;
-};
-
-const areBracketsValid = (arr) => {
+const isValidPhone = (str) => {
+  const digits = getDigits(str);
   return (
-    arr.indexOf("(") - arr.indexOf(")") === -4 ||
-    arr.indexOf("(") - arr.indexOf(")") === 0
+    digits.length === 10 || (digits.length === 11 && digits.startsWith("1"))
   );
 };
 
-const inputCheck = (str) => {
-  const invalidCharactersRegex = /[a-zA-Z!@#$%^&*_+\=\[\]{};':"\\|,.<>\/?~]/;
-  const bracketsRegex = /[-()\s]+/gi;
-  const cleanStr = str.replace(bracketsRegex, "").trim().split("");
+const areBracketsValid = (str) => {
+  const bracketValidRegex = /\(\d{3}\)/;
+  if (str.includes("(") || str.includes(")")) {
+    return bracketValidRegex.test(str);
+  } else return true;
+};
 
+const inputCheck = (str) => {
+  const rawStr = str.trim();
+  const invalidCharactersRegex = /[a-zA-Z!@#$%^&*_+\=\[\]{};':"\\|,.<>\/?~]/;
   if (
-    invalidCharactersRegex.test(str) ||
-    !str.startsWith("1") ||
-    !isPhoneNumberLengthValid(cleanStr) ||
-    !areBracketsValid(str)
+    invalidCharactersRegex.test(rawStr) ||
+    !isValidPhone(rawStr) ||
+    !areBracketsValid(rawStr)
   ) {
     return false;
-  } else return true;
+  } else {
+    return true;
+  }
 };
 
 const phoneNumberCheck = (str) => {
